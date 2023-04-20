@@ -6,9 +6,16 @@ project:
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
   source_files:        
-    - counter.v
-    - decoder.v
-  top_module:  "seven_segment_seconds"      # put the name of your top module here, make it unique by prepending your github username
+    - cpu.v
+    - config.v
+    - hdl/alu.v
+    - hdl/bram.v
+    - hdl/clock.v
+    - hdl/instruction_decoder.v
+    - hdl/memory_fetch.v
+    - hdl/opcodes.v
+    - hdl/program_counter.v
+  top_module:  "cpu"      # put the name of your top module here, make it unique by prepending your github username
 
 # Keep a track of the submission yaml
 yaml_version: 3.0
@@ -18,17 +25,15 @@ yaml_version: 3.0
 #
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
-  author:       "Matt Venn"
-  title:        "7 segment seconds"
+  author:       "Lóránt Meszlényi"
+  title:        "CPU for accelerating cryptographic operations."
   language:     "Verilog"
-  description:  "Count up to 10, one second at a time."
+  description:  "Nice for implementing TMVP2."
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
-      Uses a set of registers to divide the clock, and then some combinational logic
-      to convert from binary to decimal for the display.
-
-      Puts a slower square wave output on output 7.
+      First upload your code with SPI, using 8bit words.
+      Then upload the data and finally start the CPU.
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
@@ -38,15 +43,15 @@ documentation:
   inputs:               
     - clock
     - reset
-    - none
-    - none
+    - SCK
+    - COPI
     - none
     - none
     - none
     - none
 # A description of what the outputs do
   outputs:
-    - segment a
+    - CIPO
     - segment b
     - segment c
     - segment d
@@ -56,9 +61,9 @@ documentation:
     - slow clock output
 
 # The following fields are optional
-  tag:          "timer, test"      # comma separated list of tags: test encryption, experiment, clock, animation, utility, industrial, pwm, fpga, alu, microprocessor, risc, riscv, sensor, signal generator, fft, filter, music, bcd, sound, serial, timer, random number generator, calculator, decoder, counter, puzzle, multiplier, game, oscillator,
+  tag:          "cpu, cryptography, adder, multiplier"      # comma separated list of tags: test encryption, experiment, clock, animation, utility, industrial, pwm, fpga, alu, microprocessor, risc, riscv, sensor, signal generator, fft, filter, music, bcd, sound, serial, timer, random number generator, calculator, decoder, counter, puzzle, multiplier, game, oscillator,
   external_hw:  ""      # Describe any external hardware needed
-  discord:      "mattvenn#1907"      # Your discord handle, used for communication and automatically assigning tapeout role after a submission
+  discord:      "hydroid7#6149"      # Your discord handle, used for communication and automatically assigning tapeout role after a submission
   doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository
   clock_hz:     1000       # Clock frequency in Hz (if required)
   picture:      ""      # relative path to a picture in your repository
