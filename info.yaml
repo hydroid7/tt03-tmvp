@@ -8,6 +8,10 @@ project:
   source_files:        
     - cpu.v
     - config.v
+    - spi.v
+    - spi_state_machine.v
+    - edge_detector.v
+    - bus.v
     - hdl/alu.v
     - hdl/bram.v
     - hdl/clock.v
