@@ -1,10 +1,10 @@
-
 module bus (
     input clk,
     input rst_n,
     input spi_clk,
     input spi_cs,
     input spi_copi,
+
     output spi_cipo
 );
 
@@ -14,7 +14,7 @@ wire [0:7] tx_byte;
 
 spi transmitter(
     .clk(clk),
-    .rst(rst_n),
+    .rst_n(rst_n),
     .SCK(spi_clk),
     .CS(spi_cs),
     .COPI(spi_copi),
@@ -30,17 +30,19 @@ wire cmd_data;
 wire [0:15] cpu_data_in;
 wire [0:15] cpu_data_out;
 
-spi_state_machine sm(
-    .clk(clk),
-    .rst(rst_n),
-    .rx_byte(rx_byte),
-    .tx_byte(tx_byte),
-    .cmd_write(cmd_write),
-    .cmd_read(cmd_read),
-    .cmd_data(cmd_data),
-    .cpu_in(cpu_data_in),
-    .cpu_out(cpu_data_out)
-);
+// spi_state_machine sm(
+//     .clk(clk),
+//     .rst_n(rst_n),
+//     .rx_byte(rx_byte),
+//     .tx_byte(tx_byte),
+
+//     .cmd_write(cmd_write),
+//     .cmd_read(cmd_read),
+    
+//     .cmd_data(cmd_data),
+//     .cpu_in(cpu_data_in),
+//     .cpu_out(cpu_data_out)
+// );
 
 cpu core0 (
   .clk(clk),

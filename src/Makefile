@@ -11,7 +11,7 @@ ifneq ($(GATES),yes)
 # this is the only part you should need to modify:
 VERILOG_SOURCES += $(PWD)/tb.v $(PWD)/counter.v $(PWD)/decoder.v $(PWD)/hdl/alu.v $(PWD)/hdl/bram.v \
 	$(PWD)/hdl/clock.v $(PWD)/hdl/instruction_decoder.v $(PWD)/hdl/memory_fetch.v $(PWD)/hdl/opcodes.v \
-	$(PWD)/hdl/program_counter.v
+	$(PWD)/hdl/program_counter.v $(PWD)/bus.v $(PWD)/spi.v $(PWD)/spi_state_machine.v $(PWD)/cpu.v edge_detector.v
 
 else
 

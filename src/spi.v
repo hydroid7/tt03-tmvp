@@ -1,9 +1,9 @@
 `default_nettype none
 
 // Mode 0 8Bit transfer SPI Peripheral implementation
-module SPI (
+module spi (
     input            clk,
-    input            resetn,
+    input            rst_n,
     input            SCK,
     input            CS,
     input            COPI,
@@ -38,7 +38,7 @@ module SPI (
 
 
   always @(posedge clk) begin
-    if (!resetn) begin
+    if (!rst_n) begin
       // Registers to sync IO with FPGA clock
       COPIr <= 2'b0;
 
@@ -49,7 +49,7 @@ module SPI (
       // count the number of RX and TX bits RX incrments on rising, TX on falling SCK edge
       rxbitcnt <= 3'b000; // counts up
       txbitcnt <= 3'b111; // counts down
-    end else if (resetn) begin
+    end else if (rst_n) begin
 
       // Use a 2 bit shift register to sync COPI with FPGA clock
       COPIr <= {COPIr[0], COPI};

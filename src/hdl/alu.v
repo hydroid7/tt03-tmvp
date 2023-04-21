@@ -1,4 +1,4 @@
-`include "rtl/library/opcodes.v"
+`include "hdl/opcodes.v"
 
 module alu #(
     parameter INT_SIZE=16

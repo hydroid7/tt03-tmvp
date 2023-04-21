@@ -3,7 +3,7 @@
 // The RAM contains 2 read/write ports
 // The design pipelines input and output for f_max
 //////////////////////////////////////////////////
-`include "rtl/config.v"
+`include "config.v"
 module bram #(
     parameter SIZE=4096,
     parameter DATA_WIDTH=16,

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////
 // Simple program counter without any jumps   //
 ////////////////////////////////////////////////
-`include "rtl/config.v"
+`include "config.v"
 module program_counter (
     input wire clk,
     input wire rst,

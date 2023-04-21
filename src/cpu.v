@@ -1,7 +1,7 @@
-`include "rtl/config.v"
+`include "config.v"
 module cpu #(parameter MEMORY_SIZE = 2048) (
     input clk,
-    input rst,
+    input rst_n,
     output [15:0] data_out,
     input  [15:0] data_in,
     input data_read
@@ -28,14 +28,14 @@ wire is_store;
 
 program_counter pc0 (
     .clk(clk),
-    .rst(rst),
+    .rst(rst_n),
     .pc(pc),
     .instruction(instruction_data)
 );
 
 instruction_decoder decoder0 (
     .clk(clk),
-    .rst(rst),
+    .rst(rst_n),
     .instruction(instruction_data),
 
     .is_immediate(is_immediate),
@@ -47,7 +47,7 @@ instruction_decoder decoder0 (
 
 memory_fetch fetch0(
     .clk(clk),
-    .rst(rst),
+    .rst(rst_n),
     .is_immediate(is_immediate),
     .addr(memory_addr),
     .is_load_in(is_load),
@@ -65,7 +65,7 @@ memory_fetch fetch0(
 
 alu alu0 (
     .clk(clk),
-    .rst(rst),
+    .rst(rst_n),
     .load(is_load_alu),
     .opcode(alu_opcode),
     .in_val(alu_op),
