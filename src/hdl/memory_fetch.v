@@ -20,12 +20,13 @@ reg [15:0] registers [0:31];
 reg [1:0] store_history = 4'b0000;
 reg [11:0] addr_history [1:0];
 
-
+`ifdef FPGA
 initial begin
     $readmemh("./registers.hex", registers);
     addr_history[0] = 'b0;
     addr_history[1] = 'b0;
 end
+`endif
 
 always @(posedge clk) begin
     if (!rst) begin

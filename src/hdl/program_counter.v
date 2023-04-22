@@ -15,9 +15,11 @@ reg halt;
 
 assign pc = counter;
 
+`ifdef FPGA
 initial begin
     $readmemh("./pmem.hex", pmem);    
 end
+`endif
 
 always @(posedge clk) begin
     if (!rst) begin
